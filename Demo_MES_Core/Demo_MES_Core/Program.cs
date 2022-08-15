@@ -1,3 +1,5 @@
+using Demo_MES_Core;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,4 +24,7 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.Run();
+//app.Run();
+
+insertion_sort _Sort = new insertion_sort();
+_Sort.InsertionSort();
