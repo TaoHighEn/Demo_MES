@@ -24,7 +24,4 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-//app.Run();
-
-insertion_sort _Sort = new insertion_sort();
-_Sort.InsertionSort();
+app.Run();
