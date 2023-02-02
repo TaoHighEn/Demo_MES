@@ -1,0 +1,87 @@
+--
+-- File generated with SQLiteStudio v3.3.3 on ¶g¤T ¤K¤ë 24 00:09:44 2022
+--
+-- Text encoding used: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: mes_bom
+CREATE TABLE mes_bom (
+    bom_id   VARCHAR (10) NOT NULL,
+    bom_name VARCHAR (20) NOT NULL,
+    product_id VARCHAR (10) NOT NULL
+);
+
+-- Table: mes_bom_attribute
+CREATE TABLE mes_bom_attribute (bom_id VARCHAR (10) NOT NULL, bom_version VARCHAR (4), material_id VARCHAR (10), material_qty INTEGER);
+
+-- Table: mes_material
+CREATE TABLE mes_material (
+    material_id   VARCHAR (10) NOT NULL,
+    material_name VARCHAR (20) NOT NULL,
+    
+    version VARCHAR (4) 
+);
+
+-- Table: mes_operation
+CREATE TABLE mes_operation (operation_id VARCHAR (10) PRIMARY KEY NOT NULL, operation_name VARCHAR (20) NOT NULL);
+
+-- Table: mes_product
+CREATE TABLE mes_product (
+    product_id   VARCHAR (10) NOT NULL,
+    product_name VARCHAR (20) NOT NULL,
+    bom_id VARCHAR (10) NOT NULL,
+    route_id varchar(10),
+    recipe_id varchar(10),
+    version varchar(4)
+);
+
+-- Table: mes_recipe
+CREATE TABLE mes_recipe (recipe_id VARCHAR (10) NOT NULL, version VARCHAR (4));
+
+-- Table: mes_recipe_attribute
+CREATE TABLE mes_recipe_attribute (
+    recipe_id   VARCHAR (10) NOT NULL,
+    resource_id VARCHAR (10) NOT NULL,
+    action VARCHAR(10),
+    recipe_version VARCHAR(4)
+);
+
+-- Table: mes_resource
+CREATE TABLE mes_resource (
+    resource_id   VARCHAR (10) PRIMARY KEY
+                              NOT NULL,
+    resource_name VARCHAR (20) NOT NULL,
+    status        VARCHAR(4)      NOT NULL,
+    Repair_Cycle  INTEGAR
+    Station_ID    VARCHAR (20)
+);
+
+-- Table: mes_route
+CREATE TABLE mes_route (
+    route_id   VARCHAR (10) PRIMARY KEY
+                                NOT NULL,
+    route_name VARCHAR (20) NOT NULL,
+    status VARCHAR (4) NOT NULL
+);
+
+-- Table: mes_station
+CREATE TABLE mes_station (station_id VARCHAR (10) PRIMARY KEY NOT NULL, station_name VARCHAR (20) NOT NULL, work_area_id NOT NULL);
+
+-- Table: mes_work_area
+CREATE TABLE mes_work_area (
+    work_area_id   VARCHAR (10) PRIMARY KEY
+                              NOT NULL,
+    work_area_name VARCHAR (20) NOT NULL
+);
+
+-- Table: route_operation_step
+CREATE TABLE route_operation_step (
+    route_id   VARCHAR (10) NOT NULL,
+    operation_id VARCHAR (10) NOT NULL,
+    step VARCHAR (4) NOT NULL
+);
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
